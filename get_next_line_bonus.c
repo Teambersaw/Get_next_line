@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrossett <jrossett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/09 19:33:29 by teambersaw        #+#    #+#             */
-/*   Updated: 2021/12/16 12:04:18 by jrossett         ###   ########.fr       */
+/*   Created: 2021/12/16 12:07:32 by jrossett          #+#    #+#             */
+/*   Updated: 2021/12/16 12:16:52 by jrossett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_matrix(char	*str, char	*line)
 {
@@ -81,15 +81,15 @@ char	*ft_memory(int fd, char *str)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*str;
+	static char	*str[1024];
 
-	if (BUFFER_SIZE <= 0 || fd < 0)
+	if (BUFFER_SIZE <= 0 || fd < 0 || fd > 1024)
 		return (NULL);
-	str = ft_memory(fd, str);
-	if (!str)
+	str[fd] = ft_memory(fd, str[fd]);
+	if (!str[fd])
 		return (NULL);
-	line = ft_parse(str);
-	str = ft_matrix(str, line);
+	line = ft_parse(str[fd]);
+	str[fd] = ft_matrix(str[fd], line);
 	return (line);
 }
 
