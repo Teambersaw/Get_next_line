@@ -92,25 +92,3 @@ char	*get_next_line(int fd)
 	str[fd] = ft_matrix(str[fd], line);
 	return (line);
 }
-
-/*
-int main(int ac, char **av)
-{
-    int fd;
-    char    *line;
-
-    if (ac != 2)
-        return (0);
-    fd = open(av[1], O_RDONLY);
-    while (1)
-    {
-        line = get_next_line(fd);
-        if (!line)
-            return(0);
-		printf("%s", line);
-        free(line);
-    }
-    close(fd);
-    return (0);
-}
-*/
